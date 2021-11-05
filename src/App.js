@@ -9,14 +9,16 @@ function App() {
         <p>
           <h2>Welcome To The World of Mobile Dentistry</h2>
         </p>
+       
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://www.teledentalsolutions.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn More
         </a>
+        
       </header>
     </div>
   );
