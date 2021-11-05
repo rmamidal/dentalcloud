@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyed82236a248c4-staging-131029-authRole",
+      "UnauthRoleArn": "arn:aws:iam::699887736378:role/amplify-amplifyed82236a248c4-staging-131029-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::699887736378:role/amplify-amplifyed82236a248c4-staging-131029-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifyed82236a248c4-staging-131029-deployment",
+      "UnauthRoleName": "amplify-amplifyed82236a248c4-staging-131029-unauthRole",
+      "StackName": "amplify-amplifyed82236a248c4-staging-131029",
+      "StackId": "arn:aws:cloudformation:us-east-1:699887736378:stack/amplify-amplifyed82236a248c4-staging-131029/c00f02f0-3e39-11ec-b1ec-0e041ceb2447",
+      "AmplifyAppId": "d30jlfasulsfvt"
+    },
+    "categories": {
+      "auth": {
+        "dentalcloud10db9b2e": {}
+      }
+    }
+  }
+}
