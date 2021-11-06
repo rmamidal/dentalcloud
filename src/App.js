@@ -1,8 +1,118 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import React, { useState, useEffect } from "react";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Auth } from "aws-amplify";
 
+import LeadsApp from "./LeadsApp";
+import OwnersApp from "./OwnersApp";
+import MobileDentalReportsApp from './MobileDentalReportsApp';
+import MobileDentalDefaultApp from './MobileDentalDefaultApp';
+
+function App() {
+  const [userType, setUserType] = useState("");
+
+  let currentUserGroup = ``;
+
+  useEffect(() => {
+    async function fetchCurrentUserGroup() {
+      Auth.currentAuthenticatedUser().then((authuser) => {
+        console.log("AuthUser: ",authuser);
+        currentUserGroup =
+          authuser.signInUserSession.idToken.payload["cognito:groups"][0];
+        setUserType(currentUserGroup);
+        console.log(
+          currentUserGroup,
+          "this is the currentuser in useEffect",
+          currentUserGroup.length
+        );
+      });
+    }
+
+    fetchCurrentUserGroup();
+    console.log(
+      currentUserGroup,
+      "this is the currentuser after fetchuserGroup method",
+      { fetchCurrentUserGroup }.length
+    );
+  }, []);
+
+  async function fetchCurrentUserGroup() {
+    Auth.currentAuthenticatedUser().then((authuser) => {
+     
+      currentUserGroup =
+        authuser.signInUserSession.idToken.payload["cognito:groups"][0];
+      console.log(
+        currentUserGroup,
+        "this is the currentuser in fetchFunction",
+        currentUserGroup.length
+      );
+      return currentUserGroup;
+    });
+  }
+
+  Auth.currentAuthenticatedUser().then((authuser) => {
+    currentUserGroup =
+      authuser.signInUserSession.idToken.payload["cognito:groups"][0];
+    console.log(
+      currentUserGroup,
+      "this is the currentuser rightafter fetching it",
+      currentUserGroup.length
+    );
+  });
+
+  console.log(
+    currentUserGroup,
+    "this is the currentuser before return",
+    currentUserGroup.length
+  );
+
+/*
+async function fetchCurrentUserGroup() {
+  setUserType('Leads');
+  return 'Leads';
+}
+*/
+return (
+  <div className="App">
+    <Router>
+        <Route path="/leadshome" component={LeadsApp} />
+        <Route path="/ownershome" component={OwnersApp} />
+        <Route path="/reports" component={MobileDentalReportsApp} />
+        <Route path="/default" component={MobileDentalDefaultApp} />
+        
+        {fetchCurrentUserGroup}
+        {
+          userType === "Leads" ? 
+          (
+            <Redirect to="/leadshome" />
+          ) : ( 
+                userType == "Bizowners" ? 
+                (
+                  <Redirect to="/ownershome" />
+                ): ( 
+                  userType == "Consultants" ? 
+                  (
+                    <Redirect to="/reports" />
+                  ):
+                  (
+                    <Redirect to="/default" /> 
+                    )
+                )
+              
+              )
+        }
+        <AmplifySignOut />
+    </Router>
+  </div>
+);
+}
+export default withAuthenticator(App);
+
+//export default App;
+
+/*
 function App() {
   return (
     <div className="App">
@@ -28,5 +138,8 @@ function App() {
   );
 }
 
+
+
 // export default App;
 export default withAuthenticator(App);
+*/
