@@ -12,6 +12,7 @@ import MobileDentalDefaultApp from './MobileDentalDefaultApp';
 import OwnersProfileApp from './OwnersProfileApp';
 import AdminApp from './AdminApp';
 import StateInfoApp from './StateInfoApp';
+import StatewiseFiles from './StatewiseFiles';
         
 
 
@@ -88,6 +89,7 @@ return (
         <Route path="/reports" component={MobileDentalReportsApp} />
         <Route path="/default" component={MobileDentalDefaultApp} />
         <Route path="/ownersprofile" component={OwnersProfileApp} />
+        <Route path="/files" component={StatewiseFiles} />
         
         {fetchCurrentUserGroup}
         {
