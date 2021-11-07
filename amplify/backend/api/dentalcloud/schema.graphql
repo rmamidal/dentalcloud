@@ -1,0 +1,32 @@
+type Owner @model {
+  id: ID!
+  ownerID: String
+  lname: String
+  fname: String
+  businessName: String
+  businessDBAName: String
+  street: String
+  unit: String
+  city: String
+  state: String
+  zip: String
+
+  primaryDentistName: String
+  secondaryDentistName: String
+
+  businessLicenseNumber: String
+  businessLicenseAcquiredDate: String
+  businessLicenseExpiryDate: String
+  
+  professionalLicenseName: String
+  professionalLicenseNumber: String
+  professionalLicenseAcquiredDate: String
+  professionalLicenseExpiryDate: String
+
+
+
+  missionStatement: String
+  visionStatement: String
+  aboutBusiness: String
+  ownerBiodata: String
+}
