@@ -11,6 +11,7 @@ import MobileDentalReportsApp from './MobileDentalReportsApp';
 import MobileDentalDefaultApp from './MobileDentalDefaultApp';
 import OwnersProfileApp from './OwnersProfileApp';
 import AdminApp from './AdminApp';
+import StateInfoApp from './StateInfoApp';
         
 
 
@@ -83,7 +84,7 @@ return (
     <Router>
         <Route path="/leadshome" component={LeadsApp} />
         <Route path="/ownershome" component={OwnersApp} />
-        <Route path="/adminshome" component={AdminApp} />
+        <Route path="/adminshome" component={StateInfoApp} />
         <Route path="/reports" component={MobileDentalReportsApp} />
         <Route path="/default" component={MobileDentalDefaultApp} />
         <Route path="/ownersprofile" component={OwnersProfileApp} />

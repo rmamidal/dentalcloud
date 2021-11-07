@@ -43,5 +43,11 @@
         }
       }
     }
+  },
+  "storage": {
+    "ownerdocs": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

@@ -30,3 +30,15 @@ type Owner @model {
   aboutBusiness: String
   ownerBiodata: String
 }
+
+
+type State @model {
+  id: ID!
+  abbreviation: String
+  name: String
+  form1: String
+  form2: String
+  form3: String
+  form4: String
+  from5: String
+}

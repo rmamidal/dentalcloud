@@ -12,6 +12,7 @@ import { API, Storage, Auth } from "aws-amplify";
 import { listOwners } from './graphql/queries';
 import { createOwner as createOwnerMutation, deleteOwner as deleteOwnerMutation } from './graphql/mutations';
 
+
 /*
 async function fetchOwner(){
 

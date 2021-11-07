@@ -97,3 +97,51 @@ export const onDeleteOwner = /* GraphQL */ `
     }
   }
 `;
+export const onCreateState = /* GraphQL */ `
+  subscription OnCreateState {
+    onCreateState {
+      id
+      abbreviation
+      name
+      form1
+      form2
+      form3
+      form4
+      from5
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateState = /* GraphQL */ `
+  subscription OnUpdateState {
+    onUpdateState {
+      id
+      abbreviation
+      name
+      form1
+      form2
+      form3
+      form4
+      from5
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteState = /* GraphQL */ `
+  subscription OnDeleteState {
+    onDeleteState {
+      id
+      abbreviation
+      name
+      form1
+      form2
+      form3
+      form4
+      from5
+      createdAt
+      updatedAt
+    }
+  }
+`;

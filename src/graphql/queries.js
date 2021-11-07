@@ -72,3 +72,42 @@ export const listOwners = /* GraphQL */ `
     }
   }
 `;
+export const getState = /* GraphQL */ `
+  query GetState($id: ID!) {
+    getState(id: $id) {
+      id
+      abbreviation
+      name
+      form1
+      form2
+      form3
+      form4
+      from5
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listStates = /* GraphQL */ `
+  query ListStates(
+    $filter: ModelStateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listStates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        abbreviation
+        name
+        form1
+        form2
+        form3
+        form4
+        from5
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
