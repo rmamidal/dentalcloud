@@ -12,7 +12,8 @@ import { API, Storage, Auth } from "aws-amplify";
 import { listStates } from './graphql/queries';
 import { createState as createStateMutation, createState, deleteState as deleteStateMutation } from './graphql/mutations';
 
-
+const FORM1 = "Registration-Form"; 
+const FORM2 = "Registration-Form"; 
 /*
 async function fetchState(){
 
@@ -40,10 +41,9 @@ function StateInfoApp() {
 
 
   async function createState() {
-    if (!formData.lname || !formData.fname) return;
+    alert("creating state form");
+    if (!formData.name || !formData.abbreviation) return;
     await API.graphql({ query: createStateMutation, variables: { input: formData } });
-
-
     setState([ ...state, formData ]);
     setFormData(initialFormState);
   }
@@ -51,8 +51,8 @@ function StateInfoApp() {
   async function onChange(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
-    setFormData({ ...formData, form1: file.name });
-    await Storage.put(file.name, file);
+    setFormData({ ...formData, form1: `${formData.abbreviation}-${FORM1}` });
+    await Storage.put(`${formData.abbreviation}-${FORM1}`, file);
     fetchStates();
   }
   
@@ -76,9 +76,9 @@ function StateInfoApp() {
           const form4 = await Storage.get(state.form4);
           state.form4 = form4;
         }
-        if (state.form5) {
-          const form5 = await Storage.get(state.form5);
-          state.form5 = form5;
+        if (state.from5) {
+          const from5 = await Storage.get(state.from5);
+          state.from5 = from5;
         }
         return state;
       }))
@@ -110,9 +110,9 @@ function StateInfoApp() {
         </thead>
 
         <tr>
-          <th>formData.abbreviation</th>
-          <th>formData.name</th>
-          <th>formData.form1</th>
+          <th>{formData.abbreviation}</th>
+          <th>{formData.name}</th>
+          <th>{formData.form1}</th>
           <th>formData.form2</th>
           <th>formData.form3</th>
           <th>formData.form4</th>
@@ -120,12 +120,12 @@ function StateInfoApp() {
         </tr>
       </table>
       <input
-        onChange={e => setFormData({ ...formData, 'abbreviation': e.target.value})}
+        onChange={e => setFormData({ ...formData, abbreviation: e.target.value})}
         placeholder="abbreviation"
         value={formData.abbreviation}
       />
       <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+        onChange={e => setFormData({ ...formData, name: e.target.value})}
         placeholder="State Name"
         value={formData.name}
       />
