@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import './Owners.css';
 import { API, Storage, Auth } from "aws-amplify";
@@ -19,16 +20,15 @@ async function fetchState(){
 }
 */
 const initialFormState = {
+  state:"",
   abbreviation: "",
-  name: "",
+  name:  "",
   form1: "",
   form2: "",
   form3: "",
   form4: "",
   from5: "",
 };
-
-
 
 function StateInfoApp() {
   const [state, setState] = useState([]);
@@ -41,7 +41,7 @@ function StateInfoApp() {
 
   async function createState() {
     alert("creating state form");
-    if (!formData.name || !formData.abbreviation) return;
+    if (!formData.name || !formData.abbreviation || !formData.state || !formData.form1 ) return;
     await API.graphql({ query: createStateMutation, variables: { input: formData } });
     setState([ ...state, formData ]);
     setFormData(initialFormState);
@@ -147,25 +147,31 @@ function StateInfoApp() {
           <Card.Body>
           <Row className="mb-4 mt-5">
           <div className="userInput">
-           <select name="state" id="" className="selectState">
+          <input
+              type="text"
+              className="abbreviation"
+              onChange={e => setFormData({ ...formData, 'abbreviation': e.target.value})}
+            />
+           <select name="state" id="" className="selectState" onChange={e => setFormData({ ...formData, 'state': e.target.value})} >
               <option value="">Select state</option>
               <option value="USA">USA</option>
-              <option value="england">England</option>
-              <option value="parish">Parish</option>
-              <option value="netherland">Netherland</option>
+              <option value="England">England</option>
+              <option value="Parish">Parish</option>
+              <option value="Netherland">Netherland</option>
            </select>
-           <select name="state" id="" className="formname">
+           <select name="state" id="" className="formname" onChange={e => setFormData({ ...formData, 'name': e.target.value})}>
               <option value="">Form Name</option>
               <option value="USA">Form One</option>
               <option value="Form Two">Form Two</option>
               <option value="Form Three">Form Three</option>
               <option value="Form Five">Form Five</option>
            </select>
-              <input
-                type="file"
-                onChange={onChange}
-                className="fileUpload"
-              />
+            <input
+              type="file"
+              onChange={onChange}
+              className="fileUpload"
+              onChange={e => setFormData({ ...formData, 'form1': e.target.value})}
+            />
               <div>
                 <button onClick={createState} className="btn btn-primary">Create State</button>
               </div>
@@ -176,20 +182,20 @@ function StateInfoApp() {
             <thead>
               <tr>
                  <th>abbreviation</th>
-                <th>name</th>
+                 <th>state</th>
+                 <th>name</th>
                 <th>form1</th>
                 <th>form2</th>
                 <th>form3</th>
                 <th>form4</th>
-                <th>form5</th>
               </tr>
             </thead>
             <tbody>
                 <tr>
-                  <td>{formData.abbreviation} abbreviation</td>
-                  <td>{formData.form1} form1</td>
-                  <td>{formData.name} name</td>
-                  <td>formData.form2</td>
+                  <td>{formData.abbreviation}</td>
+                  <td>{formData.state}</td>
+                  <td>{formData.name}</td>
+                  <td>{formData.form1}</td>
                   <td>formData.form3</td>
                   <td>formData.form4</td>
                   <td>formData.from5</td>
