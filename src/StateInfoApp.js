@@ -13,7 +13,7 @@ import { listStates } from './graphql/queries';
 import { createState as createStateMutation, createState, deleteState as deleteStateMutation } from './graphql/mutations';
 
 const FORM1 = "Registration-Form"; 
-const FORM2 = "Registration-Form"; 
+const FORM2 = "Contract-Agreement"; 
 /*
 async function fetchState(){
 
